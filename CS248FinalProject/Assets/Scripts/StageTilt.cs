@@ -22,9 +22,9 @@ public class StageTilt : MonoBehaviour {
 
 		// On PC
 
-		xAngle += Input.GetAxis ("Horizontal");
+		xAngle += Input.GetAxis ("Vertical");
 		xAngle += (0 - xAngle)*restoringforce;
-		zAngle += Input.GetAxis ("Vertical");
+		zAngle -= Input.GetAxis ("Horizontal");
 		zAngle += (0 - zAngle)*restoringforce;
 		transform.eulerAngles = new Vector3 (xAngle, 0, zAngle);
 

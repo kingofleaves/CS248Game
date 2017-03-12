@@ -75,6 +75,7 @@ public class MazeGenerator : MonoBehaviour {
 			MazeString=MazeString+"\n";  // added to create String
 		}
 		print (MazeString);  // added to create String
+	
 	}
 
 	// =======================================
