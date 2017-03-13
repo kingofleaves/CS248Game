@@ -17,9 +17,10 @@ public class MazeMaker : MonoBehaviour {
 	private int _width, _height;
 	private Vector2 _currentTile;
 	public String MazeString;
-	public Vector3 startPos;
-	public Vector3 goalPos;
-	public Vector3 worldOffset;
+	private Vector3 startPos;
+	private Vector3 goalPos;
+	private Vector3 worldOffset;
+	public GameObject mapBlock;
 
 	public Vector2 CurrentTile {
 		get { return _currentTile; }
@@ -53,11 +54,19 @@ public class MazeMaker : MonoBehaviour {
 			for (int j = 0; j <= Maze.GetUpperBound(1); j++) {
 				if (Maze[i, j] == 1)  {
 					MazeString=MazeString+"X";  // added to create String
-					ptype = GameObject.CreatePrimitive(PrimitiveType.Cube);
-					ptype.transform.position = new Vector3(i * ptype.transform.localScale.x, 0, -j * ptype.transform.localScale.z);
+					ptype = GameObject.Instantiate(mapBlock);
+
+					Vector3 currPosition = ptype.transform.localPosition;
+					Quaternion currRotation = ptype.transform.localRotation;
+					Vector3 currScale = ptype.transform.localScale;
+					ptype.transform.SetParent(transform);
+					ptype.transform.localPosition = currPosition;
+					ptype.transform.localRotation = currRotation;
+					ptype.transform.localScale = currScale;
+
+					ptype.transform.localPosition = new Vector3(i * ptype.transform.localScale.x, 0, -j * ptype.transform.localScale.z);
 
 					if (brick != null)  { ptype.GetComponent<Renderer>().material = brick; }
-					ptype.transform.parent = transform;
 				}
 				else if (Maze[i, j] == 0) {
 					MazeString=MazeString+"0"; // added to create String
@@ -67,7 +76,8 @@ public class MazeMaker : MonoBehaviour {
 			MazeString=MazeString+"\n";  // added to create String
 		}
 		print (MazeString);  // added to create String
-		this.GetComponentInParent<Transform>().Translate(worldOffset);
+		Transform parentTransform = this.GetComponentInParent<Transform>();
+		parentTransform.Translate(parentTransform.TransformPoint(worldOffset));
 	
 	}
 
@@ -158,7 +168,7 @@ public class MazeMaker : MonoBehaviour {
 	}
 
 	void SetStartAndGoal() {
-		GameObject.FindGameObjectWithTag ("Player").transform.position = startPos;
-		GameObject.FindGameObjectWithTag ("Goal").transform.position = goalPos;
+		GameObject.FindGameObjectWithTag ("Player").transform.localPosition = startPos;
+		GameObject.FindGameObjectWithTag ("Goal").transform.localPosition = goalPos;
 	}
 }
