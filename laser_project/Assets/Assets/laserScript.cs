@@ -6,7 +6,7 @@ public class laserScript : MonoBehaviour {
 
 	// Use this for initialization
 	public Transform startPoint;
-	public Transform endPoint;
+	//public Transform endPoint;
 	LineRenderer laserLine;
 	void Start () {
 		laserLine = GetComponent<LineRenderer> ();
@@ -17,6 +17,6 @@ public class laserScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		laserLine.SetPosition (0, startPoint.position);
-		laserLine.SetPosition (1, endPoint.position);
+		//laserLine.SetPosition (1, endPoint.position);
 	}
 }
