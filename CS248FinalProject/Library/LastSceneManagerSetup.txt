@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Dungeon with Rooms.unity
+- path: C:/Users/Wang Ye/Dropbox/Games/CS248Game/laser_project/Assets/laser.unity
   isLoaded: 1
   isActive: 1

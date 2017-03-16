@@ -8,7 +8,7 @@ using System.IO;
 public class MazeMaker : MonoBehaviour {
 	public String stageFileName;
 	public int width, height;
-	public Material brick;
+	public Material brick = null;
 	private int[,] Maze;
 	private List<Vector3> pathMazes = new List<Vector3>();
 	private Stack<Vector2> _tiletoTry = new Stack<Vector2>();
@@ -17,10 +17,15 @@ public class MazeMaker : MonoBehaviour {
 	private int _width, _height;
 	private Vector2 _currentTile;
 	public String MazeString;
-	private Vector3 startPos;
-	private Vector3 goalPos;
+	//private Vector3 startPos;
+	//private Vector3 goalPos;
 	private Vector3 worldOffset;
 	public GameObject mapBlock;
+	public GameObject playerObj;
+	public GameObject goal;
+	public GameObject canon;
+	public GameObject laser;
+	public GameObject explosives;
 
 	public Vector2 CurrentTile {
 		get { return _currentTile; }
@@ -38,7 +43,7 @@ public class MazeMaker : MonoBehaviour {
 	void Awake()  { instance = this;}
 	void Start() { 
 		MakeBlocks(); 
-		SetStartAndGoal ();
+		//SetStartAndGoal ();
 	}
 
 	// end of main program
@@ -102,13 +107,27 @@ public class MazeMaker : MonoBehaviour {
 					break;
 				case 'S':
 					Maze [x, z] = 0;
-					startPos = new Vector3 (x, 0, -z);
-					startPos += worldOffset;
+					setObject(x, 0, z, playerObj, Quaternion.identity);
 					break;
 				case 'G':
 					Maze [x, z] = 0;
-					goalPos = new Vector3 (x, 0, -z);
-					goalPos += worldOffset;
+					setObject(x, 0, z, goal, Quaternion.identity);
+					break;
+				case 'C':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, canon, Quaternion.identity);
+					break;
+				case 'D':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, canon, Quaternion.AngleAxis(90f, Vector3.up));
+					break;
+				case 'L':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, laser, Quaternion.identity);
+					break;
+				case 'E':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, explosives, Quaternion.identity);
 					break;
 				}
 			}
@@ -168,7 +187,21 @@ public class MazeMaker : MonoBehaviour {
 	}
 
 	void SetStartAndGoal() {
-		GameObject.FindGameObjectWithTag ("Player").transform.localPosition = startPos;
-		GameObject.FindGameObjectWithTag ("Goal").transform.localPosition = goalPos;
+		//GameObject.FindGameObjectWithTag ("Player").transform.localPosition = startPos;
+		//GameObject.FindGameObjectWithTag ("Goal").transform.localPosition = goalPos;
+	}
+
+	void setObject(int x, int y, int z, GameObject obj, Quaternion objRotation) {
+		if (obj == null)
+			return;
+		Vector3 pos = new Vector3 (x, 0, -z);
+		//pos += worldOffset;
+		GameObject objInstance = Instantiate (obj);
+		Vector3 currScale = objInstance.transform.localScale;
+		// DO THIS FOR POSITION AND ROTATION TOO
+		objInstance.transform.parent = this.transform;
+		objInstance.transform.localPosition = pos;
+		objInstance.transform.localRotation = objRotation;
+		objInstance.transform.localScale = currScale;
 	}
 }
