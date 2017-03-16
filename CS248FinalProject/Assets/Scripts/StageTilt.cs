@@ -6,6 +6,7 @@ public class StageTilt : MonoBehaviour {
 	private float xAngle;
 	private float zAngle;
 	public float restoringforce;
+	public float forceFactor;		
 
 	private Gyroscope phoneGyro;
 	// Use this for initialization

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a95e0f16e864e3b4c8ae8b355be3c57f
+timeCreated: 1489642352
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _BaseColorPaintMask: {fileID: 2800000, guid: 1bbebe77e9f3531409ebfbc0965602ed,
+      type: 3}
+  - _MetallnessGlossOcclusion: {fileID: 2800000, guid: 0f2c7a040338abc45b45fadb4f696c82,
+      type: 3}
+  - _NormalMap: {fileID: 2800000, guid: 40ed4bd9a0cf95846aae304f01071911, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

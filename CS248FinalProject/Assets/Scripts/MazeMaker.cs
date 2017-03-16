@@ -25,7 +25,9 @@ public class MazeMaker : MonoBehaviour {
 	public GameObject goal;
 	public GameObject canon;
 	public GameObject laser;
-	public GameObject explosives;
+	public GameObject explosives1;
+	public GameObject explosives2;
+	public GameObject explosives3;
 
 	public Vector2 CurrentTile {
 		get { return _currentTile; }
@@ -107,7 +109,8 @@ public class MazeMaker : MonoBehaviour {
 					break;
 				case 'S':
 					Maze [x, z] = 0;
-					setObject(x, 0, z, playerObj, Quaternion.identity);
+					GameObject playerInstance = setObject (x, 0, z, playerObj, Quaternion.identity);
+					Camera.main.GetComponent<FollowCharacter> ().playerObject = playerInstance;
 					break;
 				case 'G':
 					Maze [x, z] = 0;
@@ -127,7 +130,15 @@ public class MazeMaker : MonoBehaviour {
 					break;
 				case 'E':
 					Maze [x, z] = 0;
-					setObject(x, 0, z, explosives, Quaternion.identity);
+					setObject(x, 0, z, explosives1, Quaternion.identity);
+					break;
+				case 'F':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, explosives2, Quaternion.identity);
+					break;
+				case 'H':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, explosives3, Quaternion.identity);
 					break;
 				}
 			}
@@ -191,9 +202,9 @@ public class MazeMaker : MonoBehaviour {
 		//GameObject.FindGameObjectWithTag ("Goal").transform.localPosition = goalPos;
 	}
 
-	void setObject(int x, int y, int z, GameObject obj, Quaternion objRotation) {
+	GameObject setObject(int x, int y, int z, GameObject obj, Quaternion objRotation) {
 		if (obj == null)
-			return;
+			return null;
 		Vector3 pos = new Vector3 (x, 0, -z);
 		//pos += worldOffset;
 		GameObject objInstance = Instantiate (obj);
@@ -203,5 +214,6 @@ public class MazeMaker : MonoBehaviour {
 		objInstance.transform.localPosition = pos;
 		objInstance.transform.localRotation = objRotation;
 		objInstance.transform.localScale = currScale;
+		return objInstance;
 	}
 }
