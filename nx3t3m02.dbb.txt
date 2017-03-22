@@ -1,0 +1,87 @@
+﻿Revert "3rd temp commit"
+
+This reverts commit 173972f87f413861ad11120d923a0aba5bef7599.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	renamed:    CS248FinalProject/Assets/Scenes/Stage 1.unity -> CS248FinalProject/Assets/Scenes/Dungeon with Rooms.unity
+#	renamed:    CS248FinalProject/Assets/Scenes/TestScenes/Dungeon with Rooms.unity.meta -> CS248FinalProject/Assets/Scenes/Dungeon with Rooms.unity.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/Main Menu.unity
+#	deleted:    CS248FinalProject/Assets/Scenes/Main Menu.unity.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/Stage 1.unity.meta
+#	renamed:    CS248FinalProject/Assets/Scenes/TestScenes/Test Scene.unity -> CS248FinalProject/Assets/Scenes/Test Scene.unity
+#	renamed:    CS248FinalProject/Assets/Scenes/TestScenes/Test Scene.unity.meta -> CS248FinalProject/Assets/Scenes/Test Scene.unity.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes/Dungeon with Rooms.unity
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes/canon_joint.unity
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes/canon_joint.unity.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes/laser.unity
+#	deleted:    CS248FinalProject/Assets/Scenes/TestScenes/laser.unity.meta
+#	deleted:    CS248FinalProject/Assets/Scenes/Tutorial.unity
+#	deleted:    CS248FinalProject/Assets/Scenes/Tutorial.unity.meta
+#	modified:   CS248FinalProject/Library/AssetServerCacheV3
+#	modified:   CS248FinalProject/Library/CurrentLayout.dwlt
+#	modified:   CS248FinalProject/Library/LastSceneManagerSetup.txt
+#	modified:   CS248FinalProject/Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   CS248FinalProject/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	deleted:    CS248FinalProject/Library/ShaderCache/1/1aab950845e02ccde1c1860294b0d157.bin
+#	deleted:    CS248FinalProject/Library/ShaderCache/a/a609ada181e3cf26cd162393c2f27c1e.bin
+#	modified:   CS248FinalProject/Library/assetDatabase3
+#	modified:   CS248FinalProject/Library/expandedItems
+#	modified:   CS248FinalProject/Library/metadata/00/00000000000000003000000000000000
+#	modified:   CS248FinalProject/Library/metadata/00/00000000000000004000000000000000
+#	modified:   CS248FinalProject/Library/metadata/00/00000000000000005000000000000000
+#	modified:   CS248FinalProject/Library/metadata/00/00000000000000006100000000000000
+#	modified:   CS248FinalProject/Library/metadata/00/0000000000000000b000000000000000
+#	modified:   CS248FinalProject/Library/metadata/07/0757df056cd4bd143872b916e15675ab.info
+#	modified:   CS248FinalProject/Library/metadata/08/087cec9cbd49646bdb8c9535dfb407c9
+#	modified:   CS248FinalProject/Library/metadata/08/087cec9cbd49646bdb8c9535dfb407c9.info
+#	new file:   CS248FinalProject/Library/metadata/0b/0bb9b78134cf82a44ba6ac88c277a5da
+#	modified:   CS248FinalProject/Library/metadata/0c/0cc5edf082b114ad6b1d1ecf3b087716
+#	modified:   CS248FinalProject/Library/metadata/19/19eefec8a67878e4aa9ccb72a4239ec0
+#	deleted:    CS248FinalProject/Library/metadata/22/220bd8a27f2ff2b478909edc66c8d3d8
+#	deleted:    CS248FinalProject/Library/metadata/22/220bd8a27f2ff2b478909edc66c8d3d8.info
+#	modified:   CS248FinalProject/Library/metadata/25/25206e3b103b947a49a175bda720fc36.info
+#	new file:   CS248FinalProject/Library/metadata/39/39dbf085f285ff944b2a3339a8b94e6d.info
+#	modified:   CS248FinalProject/Library/metadata/4b/4b8594a96fd1db449afc2e01891b60ae.info
+#	deleted:    CS248FinalProject/Library/metadata/4c/4c6ddb1d2b1e635419f303d5f08777a2
+#	deleted:    CS248FinalProject/Library/metadata/4c/4c6ddb1d2b1e635419f303d5f08777a2.info
+#	modified:   CS248FinalProject/Library/metadata/52/52a206b72a8f4f749c28d8b18b42dd19
+#	new file:   CS248FinalProject/Library/metadata/58/582d44be9a18f1346b76b93406b83f31
+#	modified:   CS248FinalProject/Library/metadata/67/67e9dad5654047ebbe623cce9dbf7b38
+#	new file:   CS248FinalProject/Library/metadata/6f/6f9219bb10ba84847acb37e72cb027ee
+#	deleted:    CS248FinalProject/Library/metadata/70/70e8440e6333c3b4f8be993275579b68
+#	deleted:    CS248FinalProject/Library/metadata/70/70e8440e6333c3b4f8be993275579b68.info
+#	new file:   CS248FinalProject/Library/metadata/76/76d4741b9d3a3ee40894ec3068d1c338.info
+#	modified:   CS248FinalProject/Library/metadata/77/7735a2febadd0489b8d804a4e49e97f8.info
+#	modified:   CS248FinalProject/Library/metadata/7a/7a8684ae2e6e74a45b225fa670a997f9
+#	modified:   CS248FinalProject/Library/metadata/7a/7a8684ae2e6e74a45b225fa670a997f9.info
+#	modified:   CS248FinalProject/Library/metadata/86/86498cdced96b5045b6ec65c06164c31
+#	new file:   CS248FinalProject/Library/metadata/88/88b3523990bf1b64fb4c2ced370a5e5a
+#	modified:   CS248FinalProject/Library/metadata/89/892296e117cf74c47a7a28b773db8b67.info
+#	modified:   CS248FinalProject/Library/metadata/8f/8fab6be93fa57f247ba774dbc4bfed24.info
+#	modified:   CS248FinalProject/Library/metadata/9a/9a4ad3e7e84f4694ea99ac175aa29afc
+#	deleted:    CS248FinalProject/Library/metadata/a1/a1452894933715944884aae3909666ee
+#	deleted:    CS248FinalProject/Library/metadata/a1/a1452894933715944884aae3909666ee.info
+#	new file:   CS248FinalProject/Library/metadata/aa/aa04c724a46410f4685e3b62eb3f209c
+#	deleted:    CS248FinalProject/Library/metadata/b5/b55d2267dbdd94b4ca4b1edf7732d896
+#	deleted:    CS248FinalProject/Library/metadata/b5/b55d2267dbdd94b4ca4b1edf7732d896.info
+#	modified:   CS248FinalProject/Library/metadata/bb/bb4346cf03866c54b98046b724f93ebf
+#	modified:   CS248FinalProject/Library/metadata/c7/c7392d53636679a45b72157ebfdb44ba
+#	deleted:    CS248FinalProject/Library/metadata/c8/c83f2ddd3ac04514cbf7c9edcdfdfedd
+#	deleted:    CS248FinalProject/Library/metadata/c8/c83f2ddd3ac04514cbf7c9edcdfdfedd.info
+#	new file:   CS248FinalProject/Library/metadata/cf/cfb1a2648f9249e409eedc9a66c0fea2
+#	modified:   CS248FinalProject/Library/metadata/d0/d02acc49c904a47d5b5e260fec350c4f.info
+#	new file:   CS248FinalProject/Library/metadata/d6/d6bff7095783d384eaf4076d0b176be3
+#	modified:   CS248FinalProject/Library/metadata/f4/f48df919adea4fa095a7407e773e5aa4
+#	deleted:    CS248FinalProject/Library/metadata/fb/fb5e817ebbe8a4da29cca31093e8315a
+#	deleted:    CS248FinalProject/Library/metadata/fb/fb5e817ebbe8a4da29cca31093e8315a.info
+#	new file:   CS248FinalProject/Library/metadata/fc/fcd9a8c0cefcd0d40b896209fa0f14bf
+#	new file:   CS248FinalProject/Library/metadata/fd/fdc31bb37006a664ca72f620299e7628.info
+#	modified:   CS248FinalProject/Library/shadercompiler-UnityShaderCompiler.exe0.log
+#
+

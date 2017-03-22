@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 70e8440e6333c3b4f8be993275579b68
 folderAsset: yes
 timeCreated: 1490189007
+=======
+guid: 074c6a9be9475e045b7c880e0ec72ac3
+folderAsset: yes
+timeCreated: 1490132678
+>>>>>>> parent of f00fe35... temp commit again...
 licenseType: Free
 DefaultImporter:
   userData: 

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 220bd8a27f2ff2b478909edc66c8d3d8
 timeCreated: 1490189007
+=======
+guid: 25f553a26ba7ec4448c9222aeda24675
+timeCreated: 1489692478
+>>>>>>> parent of f00fe35... temp commit again...
 licenseType: Free
 DefaultImporter:
   userData: 
