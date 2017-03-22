@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Tutorial.unity
+=======
+- path: Assets/Scenes/Dungeon with Rooms with turrets.unity
+>>>>>>> 10916662e005ee8a88f7ec5c09d126a8fb3505e7
   isLoaded: 1
   isActive: 1
