@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 
 public class MazeMaker : MonoBehaviour {
-	public TextAsset stageFile;
+	public String stageFileName;
 	public int width, height;
 	public Material brick = null;
 	private int[,] Maze;
@@ -90,15 +90,14 @@ public class MazeMaker : MonoBehaviour {
 
 	// =======================================
 	public int[,] CreateMaze() {
-		string stageInfo = stageFile.text;
-		string[] stageInfoArray = stageInfo.Split ('\n');
-		height = Convert.ToInt32(stageInfoArray[0].Trim());
-		width = Convert.ToInt32(stageInfoArray[1].Trim());
+		StreamReader fileReader = new StreamReader (stageFileName, Encoding.Default);
+
+		height = Convert.ToInt32(fileReader.ReadLine().Trim());
+		width = Convert.ToInt32(fileReader.ReadLine().Trim());
 		worldOffset = new Vector3 (-width / 2f, 1f, height / 2f); 
 		Maze = new int[width, height];
-		for (int z = 0; z < height; z++) {		
-			// Debug.Log (stageInfoArray[2+z]);
-			string currLine = stageInfoArray[2 + z].Trim ();
+		for (int z = 0; z < height; z++) {			
+			string currLine = fileReader.ReadLine ().Trim ();
 			for (int x = 0; x < width; x++) {
 				Char currBlock = currLine [x];
 				switch (currBlock) {
@@ -112,13 +111,6 @@ public class MazeMaker : MonoBehaviour {
 					Maze [x, z] = 0;
 					GameObject playerInstance = setObject (x, 0, z, playerObj, Quaternion.identity);
 					Camera.main.GetComponent<FollowCharacter> ().playerObject = playerInstance;
-					CharacterControl charControl = playerInstance.GetComponent<CharacterControl> ();
-					charControl.GameOverUI = GameObject.FindGameObjectWithTag ("GameOverUI");
-					charControl.SuccessUI = GameObject.FindGameObjectWithTag ("SuccessUI");
-					charControl.Menu = GameObject.FindGameObjectWithTag ("Menu");
-					charControl.GameOverUI.SetActive (false);
-					charControl.Menu.SetActive (false);
-					charControl.SuccessUI.SetActive (false);
 					break;
 				case 'G':
 					Maze [x, z] = 0;

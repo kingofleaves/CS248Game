@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Stage 1.unity
+=======
+- path: Assets/Scenes/Dungeon with Rooms.unity
+>>>>>>> parent of 958278e... added some UI features such as camera switching, zoom and swipe
   isLoaded: 1
   isActive: 1
