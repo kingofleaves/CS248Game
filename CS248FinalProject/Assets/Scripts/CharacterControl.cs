@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour {
 	public GameObject GameOverUI;
+	public GameObject SuccessUI;
+	public GameObject Menu;
 	public GameObject deathEffect;
 
 
 	// Use this for initialization
 	void Start () {
-
 	}
 	
 	// Update is called once per frame
@@ -20,26 +21,32 @@ public class CharacterControl : MonoBehaviour {
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "Goal") {
 			triggerGoal ();
-		}
-		if (col.gameObject.tag != "stage") {
+			Debug.Log ("success");
+		} else if (col.gameObject.tag != "stage") {
 			triggerGameOver (col); 
 		}
 	}
 	void triggerGoal() {
-
+		Menu.SetActive (true);
+		SuccessUI.SetActive (true);
 	}
 
 	void triggerGameOver(Collision col) {
-		LoadGameOver (col);
+		if (!SuccessUI.activeInHierarchy) {
+			LoadGameOver ();
+		}
 		DeathAnimation (col);
 	}
 
-	void LoadGameOver (Collision col) {
+	void LoadGameOver () {
+		Menu.SetActive (true);
 		GameOverUI.SetActive (true);
-		//pass col to GameOverUI
 	}
 
 	void DeathAnimation (Collision col) {
+
+		Handheld.Vibrate ();
+		GetComponent<Rigidbody> ().isKinematic = true;
 		ContactPoint contact = col.contacts[0];
 		Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
 		Vector3 pos = contact.point;
