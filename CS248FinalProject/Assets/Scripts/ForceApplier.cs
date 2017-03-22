@@ -18,11 +18,12 @@ public class ForceApplier : MonoBehaviour {
 	void Update () {
 		Vector3 forceToAdd = new Vector3(forceFactor*Input.GetAxis ("Horizontal"), -forceFactor * 1f, forceFactor*Input.GetAxis ("Vertical"));
 		//forceToAdd = stage.transform.rotation * forceToAdd;
-		Vector3 phoneAccel = Input.acceleration;
+		Vector3 phoneAccel = new Vector3 (Input.acceleration.x, Input.acceleration.z, Input.acceleration.y);
+
 		if (phoneAccel.magnitude > 0.01f) {
 			forceToAdd += phoneAccel * forceFactor;
-			if (forceToAdd.y > 0) {
-				forceToAdd.y = 0;
+			if (forceToAdd.y > -1f) {
+				forceToAdd.y = -1f;
 			}
 		}
 		rb.AddForce (forceToAdd);
