@@ -7,11 +7,14 @@ public class PinchZoom : MonoBehaviour {
 	public float orthoZoomSpeed = 0.5f;
 	public float maxOrthoSize = 10f;
 	public float minOrthoSize = 0.1f;
-	public float maxPerspSize = 170f;
-	public float minPerspSize = 1f;
+	public float maxPerspSize = 100f;
+	public float minPerspSize = 10f;
+	public SwitchCamera switchCamera;
+	public GameObject instructionText;
+	private bool textClosed = false;
 	// Use this for initialization
 	void Start () {
-		
+		switchCamera = FindObjectOfType<SwitchCamera> ();
 	}
 	
 	// Update is called once per frame
@@ -31,12 +34,16 @@ public class PinchZoom : MonoBehaviour {
 			float touchSeparationDifference = previousTouchSeparation - currTouchSeparation;
 
 			if (Camera.current.orthographic) {
-				Camera.current.orthographicSize += touchSeparationDifference * orthoZoomSpeed;
-				Camera.current.orthographicSize = Mathf.Clamp (Camera.current.orthographicSize, minOrthoSize, maxOrthoSize);
+				//Camera.current.orthographicSize += touchSeparationDifference * orthoZoomSpeed;
+				//Camera.current.orthographicSize = Mathf.Clamp (Camera.current.orthographicSize, minOrthoSize, maxOrthoSize);
 			} else {
 				Camera.current.fieldOfView += touchSeparationDifference * perspZoomSpeed;
 				Camera.current.fieldOfView = Mathf.Clamp (Camera.current.fieldOfView, minPerspSize, maxPerspSize);
 			}
 		}	
+
+		if (switchCamera.perspCamera.isActiveAndEnabled && instructionText != null) {
+			instructionText.SetActive (true);
+		}
 	}
 }

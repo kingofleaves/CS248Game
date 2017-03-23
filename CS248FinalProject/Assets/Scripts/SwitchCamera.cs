@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SwitchCamera : MonoBehaviour {
 	private Camera [] cameras;
+	public Camera perspCamera;
+	public Camera orthoCamera;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		cameras = FindObjectsOfType<Camera>();
 		foreach (Camera thisCamera in cameras) {
-			thisCamera.enabled = !thisCamera.orthographic;
+			thisCamera.enabled = thisCamera.orthographic;
+			if (thisCamera.orthographic)
+				orthoCamera = thisCamera;
+			else
+				perspCamera = thisCamera;
 		}
 	}
 	

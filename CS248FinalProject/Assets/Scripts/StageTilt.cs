@@ -11,7 +11,7 @@ public class StageTilt : MonoBehaviour {
 	private Gyroscope phoneGyro;
 	// Use this for initialization
 	void Start () {
-		forceFactor = 50f;
+		forceFactor = 80f;
 		xAngle = 0f;
 		zAngle = 0f;
 //		phoneGyro = Input.gyro;

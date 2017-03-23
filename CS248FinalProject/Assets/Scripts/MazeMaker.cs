@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 
 public class MazeMaker : MonoBehaviour {
+	private bool MazeMade;
 	public TextAsset stageFile;
 	public int width, height;
 	public Material brick = null;
@@ -20,6 +21,7 @@ public class MazeMaker : MonoBehaviour {
 	//private Vector3 startPos;
 	//private Vector3 goalPos;
 	private Vector3 worldOffset;
+	public GameObject floor;
 	public GameObject mapBlock;
 	public GameObject playerObj;
 	public GameObject goal;
@@ -28,6 +30,8 @@ public class MazeMaker : MonoBehaviour {
 	public GameObject explosives1;
 	public GameObject explosives2;
 	public GameObject explosives3;
+	private CharacterControl mainCharControl = null;
+
 
 	public Vector2 CurrentTile {
 		get { return _currentTile; }
@@ -44,8 +48,14 @@ public class MazeMaker : MonoBehaviour {
 	}
 	void Awake()  { instance = this;}
 	void Start() { 
-		MakeBlocks(); 
-		//SetStartAndGoal ();
+		MazeMade = false;
+	}
+
+	void Update () {
+		if (!MazeMade) {
+			MakeBlocks (); 
+			MazeMade = true;
+		}
 	}
 
 	// end of main program
@@ -54,38 +64,9 @@ public class MazeMaker : MonoBehaviour {
 
 	void MakeBlocks() {
 		Maze = CreateMaze();  // generate the maze in Maze Array.
-		CurrentTile = Vector2.one;
-		_tiletoTry.Push(CurrentTile);
-		GameObject ptype = null;
-		for (int i = 0; i <= Maze.GetUpperBound(0); i++)  {
-			for (int j = 0; j <= Maze.GetUpperBound(1); j++) {
-				if (Maze[i, j] == 1)  {
-					MazeString=MazeString+"X";  // added to create String
-					ptype = GameObject.Instantiate(mapBlock);
-
-					Vector3 currPosition = ptype.transform.localPosition;
-					Quaternion currRotation = ptype.transform.localRotation;
-					Vector3 currScale = ptype.transform.localScale;
-					ptype.transform.SetParent(transform);
-					ptype.transform.localPosition = currPosition;
-					ptype.transform.localRotation = currRotation;
-					ptype.transform.localScale = currScale;
-
-					ptype.transform.localPosition = new Vector3(i * ptype.transform.localScale.x, 0, -j * ptype.transform.localScale.z);
-
-					if (brick != null)  { ptype.GetComponent<Renderer>().material = brick; }
-				}
-				else if (Maze[i, j] == 0) {
-					MazeString=MazeString+"0"; // added to create String
-					pathMazes.Add(new Vector3(i, 0, j));
-				}
-			}
-			MazeString=MazeString+"\n";  // added to create String
-		}
-		print (MazeString);  // added to create String
+		floor.transform.localScale = new Vector3 (width, 1f, height);
 		Transform parentTransform = this.GetComponentInParent<Transform>();
 		parentTransform.Translate(parentTransform.TransformPoint(worldOffset));
-	
 	}
 
 	// =======================================
@@ -94,7 +75,7 @@ public class MazeMaker : MonoBehaviour {
 		string[] stageInfoArray = stageInfo.Split ('\n');
 		height = Convert.ToInt32(stageInfoArray[0].Trim());
 		width = Convert.ToInt32(stageInfoArray[1].Trim());
-		worldOffset = new Vector3 (-width / 2f, 1f, height / 2f); 
+		worldOffset = new Vector3 (-width / 2f + 0.5f, 1f, height / 2f - 0.5f); 
 		Maze = new int[width, height];
 		for (int z = 0; z < height; z++) {		
 			// Debug.Log (stageInfoArray[2+z]);
@@ -107,18 +88,27 @@ public class MazeMaker : MonoBehaviour {
 					break;
 				case 'X':
 					Maze [x, z] = 1;
+					setObject(x, 0, z, mapBlock, Quaternion.identity);
 					break;
 				case 'S':
 					Maze [x, z] = 0;
 					GameObject playerInstance = setObject (x, 0, z, playerObj, Quaternion.identity);
-					Camera.main.GetComponent<FollowCharacter> ().playerObject = playerInstance;
+					Camera perspCamera = GameObject.FindGameObjectWithTag ("CameraHandler").GetComponent<SwitchCamera> ().perspCamera;
+					perspCamera.GetComponent<FollowCharacter> ().playerObject = playerInstance;
 					CharacterControl charControl = playerInstance.GetComponent<CharacterControl> ();
-					charControl.GameOverUI = GameObject.FindGameObjectWithTag ("GameOverUI");
-					charControl.SuccessUI = GameObject.FindGameObjectWithTag ("SuccessUI");
-					charControl.Menu = GameObject.FindGameObjectWithTag ("Menu");
-					charControl.GameOverUI.SetActive (false);
-					charControl.Menu.SetActive (false);
-					charControl.SuccessUI.SetActive (false);
+					if (mainCharControl == null) {
+						mainCharControl = charControl;
+						mainCharControl.GameOverUI = GameObject.FindGameObjectWithTag ("GameOverUI");
+						mainCharControl.SuccessUI = GameObject.FindGameObjectWithTag ("SuccessUI");
+						mainCharControl.Menu = GameObject.FindGameObjectWithTag ("Menu");
+						mainCharControl.GameOverUI.SetActive (false);
+						mainCharControl.Menu.SetActive (false);
+						mainCharControl.SuccessUI.SetActive (false);
+					} else {
+						charControl.GameOverUI = mainCharControl.GameOverUI;
+						charControl.SuccessUI = mainCharControl.SuccessUI;
+						charControl.Menu = mainCharControl.Menu;
+					}
 					break;
 				case 'G':
 					Maze [x, z] = 0;
@@ -142,11 +132,20 @@ public class MazeMaker : MonoBehaviour {
 					break;
 				case 'F':
 					Maze [x, z] = 0;
-					setObject(x, 0, z, explosives2, Quaternion.identity);
+					setObject(x, 0, z, explosives2, Quaternion.AngleAxis(90f, Vector3.left));
 					break;
 				case 'H':
 					Maze [x, z] = 0;
 					setObject(x, 0, z, explosives3, Quaternion.identity);
+					break;
+				case 'I':
+					Maze [x, z] = 0;
+					setObject(x, 0, z, explosives2, Quaternion.AngleAxis(90f, Vector3.forward));
+					break;
+				case 'Z':
+					Maze [x, z] = 0;
+					GameObject wallObject = setObject (x, 0, z, explosives2, Quaternion.identity);
+					wallObject.GetComponentInChildren<Rigidbody> ().isKinematic = true;
 					break;
 				}
 			}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwipeMoveCamera : MonoBehaviour {
 	private Vector2 startPos;
-	public float cameraMoveFactor = 1f;
+	public float cameraMoveFactor = 0.01f;
 	// Use this for initialization
 	void Start () {
 		

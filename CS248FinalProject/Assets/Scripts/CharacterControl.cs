@@ -7,6 +7,9 @@ public class CharacterControl : MonoBehaviour {
 	public GameObject SuccessUI;
 	public GameObject Menu;
 	public GameObject deathEffect;
+	public AudioSource bgm;
+	public AudioSource explosionAudio;
+	public AudioSource successAudio;
 
 
 	// Use this for initialization
@@ -20,7 +23,9 @@ public class CharacterControl : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "Goal") {
-			triggerGoal ();
+			if (!SuccessUI.activeInHierarchy) {
+				triggerGoal ();
+			}	
 			Debug.Log ("success");
 		} else if (col.gameObject.tag != "stage") {
 			triggerGameOver (col); 
@@ -29,6 +34,8 @@ public class CharacterControl : MonoBehaviour {
 	void triggerGoal() {
 		Menu.SetActive (true);
 		SuccessUI.SetActive (true);
+		bgm.Stop ();
+		successAudio.Play ();
 	}
 
 	void triggerGameOver(Collision col) {
@@ -44,8 +51,10 @@ public class CharacterControl : MonoBehaviour {
 	}
 
 	void DeathAnimation (Collision col) {
-
+		explosionAudio.Play();
+		bgm.Stop ();
 		Handheld.Vibrate ();
+		explosionAudio.transform.parent = transform.parent;
 		GetComponent<Rigidbody> ().isKinematic = true;
 		ContactPoint contact = col.contacts[0];
 		Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
