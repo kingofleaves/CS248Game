@@ -42,8 +42,9 @@ public class PinchZoom : MonoBehaviour {
 			}
 		}	
 
-		if (switchCamera.perspCamera.isActiveAndEnabled && instructionText != null) {
+		if (switchCamera.perspCamera.isActiveAndEnabled && instructionText != null && !textClosed) {
 			instructionText.SetActive (true);
+			textClosed = true;
 		}
 	}
 }
